@@ -24,7 +24,7 @@ onMounted(() => {
       }
     }
   })
-  store.updateContent(editorView.state.doc.toString())
+  store.updateContent(editorView.state.doc.toString(), { dirty: false })
   emit('ready', editorView)
 })
 

@@ -15,9 +15,9 @@ export const useEditorStore = defineStore('editor', () => {
     return `Ln ${cursorLine.value}, Col ${cursorCol.value} | ${wordCount.value} words | ${charCount.value} chars`
   })
 
-  function updateContent(newContent) {
+  function updateContent(newContent, { dirty = true } = {}) {
     content.value = newContent
-    isDirty.value = true
+    if (dirty) isDirty.value = true
     // Update stats
     charCount.value = newContent.length
     lineCount.value = newContent.split('\n').length

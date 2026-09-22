@@ -23,15 +23,17 @@
 
     <div class="toolbar__right">
       <span class="toolbar__file">{{ store.fileName }}</span>
+      <ExportMenu @export="(action) => emit('export', action)" />
     </div>
   </header>
 </template>
 
 <script setup>
 import { useEditorStore } from '@/stores/editor'
+import ExportMenu from '@/components/ExportMenu.vue'
 
 const store = useEditorStore()
-const emit = defineEmits(['action'])
+const emit = defineEmits(['action', 'export'])
 
 const I = (d, size = 16) =>
   `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`
@@ -141,6 +143,7 @@ const actionGroups = [
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    gap: $sp-3;
     min-width: 140px;
   }
 
